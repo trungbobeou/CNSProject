@@ -74,7 +74,6 @@ function getKeyPlesk()
 
 function getDomain($domainname)
 {
-
     $curl = curl_init();
 
     curl_setopt_array(
@@ -105,5 +104,35 @@ function getDomain($domainname)
     else
         return false;
 }
-getDomain('console.tgs.com.vn');
+
+function getDNS($dnsname)
+{
+    $curl = curl_init();
+
+    curl_setopt_array($curl, [
+        CURLOPT_PORT => "8443",
+        CURLOPT_URL => "https://103.42.58.124:8443/api/v2/dns/records?domain=em.tgs.com.vn%20",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_SSL_VERIFYHOST => 0,
+        CURLOPT_SSL_VERIFYPEER => 0,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => [
+            "Accept: */*",
+            "Authorization: Basic cm9vdDpUaGVnaW9pc29AMTIzKiokJEBAQEA=",
+            "User-Agent: Thunder Client (https://www.thunderclient.com)"
+        ],
+    ]);
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+    curl_close($curl);
+
+    $objdns = json_decode($response);
+    return $objdns;
+}
+$objdnsout = getDNS('em.tgs.com.vn');
 ?>

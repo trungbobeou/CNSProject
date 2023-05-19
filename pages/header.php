@@ -6,4 +6,5 @@
     <script src='js/bootstrap.min.js'></script>
     <script src='js/bootstrap.bundle.min.js'></script>
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bulma.min.css">
 </head>

@@ -80,7 +80,7 @@ function getDomain($domainname)
     curl_setopt_array(
         $curl,
         array(
-            CURLOPT_URL => 'https://103.42.58.124/api/v2/domains?name=' . $domainname,
+            CURLOPT_URL => 'https://103.42.58.124:8443/api/v2/domains?name=' . $domainname,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -91,7 +91,7 @@ function getDomain($domainname)
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Basic cm9vdDpUaGVnaW9pc29AMTIzKiokJEBAQEBAQA=='
+                'Authorization: Basic cm9vdDpUaGVnaW9pc29AMTIzKiokJEBAQEA='
             ),
         )
     );

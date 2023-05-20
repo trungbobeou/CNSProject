@@ -6,7 +6,7 @@
 <body>
     <?php
     include 'functions/function.php';
-    include 'pages/addDNS.php';
+    include 'pages/addDNS.php'; 
     ?>
 </body>
 

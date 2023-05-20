@@ -6,15 +6,16 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/inputmask/dist/jquery.inputmask.min.js" ></script>
-    <script src="node_modules/inputmask/dist/inputmask.min.js" ></script>
-    <script src="node_modules/inputmask/dist/bindings/inputmask.binding.js" ></script>
+    <script src="node_modules/inputmask/dist/jquery.inputmask.min.js"></script>
+    <script src="node_modules/inputmask/dist/inputmask.min.js"></script>
+    <script src="node_modules/inputmask/dist/bindings/inputmask.binding.js"></script>
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/additional-methods.min.js"></script>
-    <script src="js/inputmaskrule.js"></script>
+    <script src="js/jquerydns.js"></script>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bulma.min.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
     <style>
         .error {
             color: red;

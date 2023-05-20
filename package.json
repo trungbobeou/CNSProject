@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "font-awesome": "^4.7.0",
     "inputmask": "^5.0.8",
     "jquery": "^3.7.0"
   }

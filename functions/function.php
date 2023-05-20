@@ -147,7 +147,7 @@ function addDNS($domainname)
         "host" => $nameRecord . "." . $domainname,
         "value" => $valueRecord,
         "opt" => "",
-        "ttl" => ($ttl)?$ttl:3600
+        "ttl" => ($ttl) ? $ttl : 3600
     ];
 
     $curl = curl_init();
@@ -236,7 +236,7 @@ function deleteDNS($idrecord)
 
     curl_setopt_array($curl, [
         CURLOPT_PORT => "8443",
-        CURLOPT_URL => "https://103.42.58.124:8443/api/v2/dns/records/".$idrecord,
+        CURLOPT_URL => "https://103.42.58.124:8443/api/v2/dns/records/" . $idrecord,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
         CURLOPT_MAXREDIRS => 10,
@@ -262,6 +262,50 @@ function deleteDNS($idrecord)
     }
 }
 
+function addDomain()
+{
+    $nameRecord = $_POST["inputNameRecord"];
+    $typeRecord = $_POST["txtTypeRecord"];
+    $valueRecord = $_POST["inputValueRecord"];
+    $ttl = $_POST["inputTTL"];
+
+    $arraydomain = [
+        "type" => $typeRecord,
+        "host" => $nameRecord . "." . $domainname,
+        "value" => $valueRecord,
+        "opt" => "",
+        "ttl" => ($ttl) ? $ttl : 3600
+    ];
+
+    $curl = curl_init();
+    curl_setopt_array($curl, [
+      CURLOPT_PORT => "8443",
+      CURLOPT_URL => "https://103.42.58.124:8443/api/v2/domains%20",
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => "",
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 30,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => "POST",
+      CURLOPT_POSTFIELDS => "{\r\n  \"name\": \"testdnsaa.com\",\r\n  \"description\": \"My website\",\r\n  \"hosting_type\": \"virtual\",\r\n  \"hosting_settings\": {\r\n    \"ftp_login\": \"test\",\r\n    \"ftp_password\": \"123@123\"\r\n  },\r\n  \"ip_addresses\": [\r\n    \"103.42.58.124\"\r\n  ],\r\n  \"ipv4\": [\r\n    \"103.42.58.124\"\r\n  ],\r\n  \"plan\": {\r\n    \"name\": \"Unlimited\"\r\n  }\r\n}",
+      CURLOPT_HTTPHEADER => [
+        "Accept: */*",
+        "Content-Type: application/json",
+        "User-Agent: Thunder Client (https://www.thunderclient.com)"
+      ],
+    ]);
+    
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+    curl_close($curl);
+    
+    if ($err) {
+      echo "cURL Error #:" . $err;
+    } else {
+      echo $response;
+    }
+}
+
 $objdnsout = getDNS('testdns.com');
 
 if (isset($_POST['addDNS'])) {
@@ -269,10 +313,10 @@ if (isset($_POST['addDNS'])) {
 }
 if (isset($_POST['updateDNS'])) {
     updateDNS();
-} 
+}
 if (isset($_GET['action']) && $_GET['action'] == 'deleteRecord') {
     $iddRecord = $_GET['idRecord'];
-   deleteDNS($iddRecord);
-} 
+    deleteDNS($iddRecord);
+}
 
 ?>

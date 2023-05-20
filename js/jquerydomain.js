@@ -1,39 +1,31 @@
 $(document).ready(function () {
     var valuerecordcheck;
-    $("#btnupdateDNS").hide();
-    $("#btnaddDNS").show();
-    $("#txtTypeRecord").val($("#sltTypeRecord option:selected").text());
-    $('#btnaddDNS').prop('disabled', true);
-    if ($("#sltTypeRecord option:selected").text() == "NS") {
-        $("#inputValueRecord").inputmask({
-            mask: "*{1,}.a{1,}",
-            greedy: false,
-            onincomplete: function () {
-                valuerecordcheck = false
-            },
-            oncomplete: function () {
-                valuerecordcheck = true
-            }
-        });
-    }
-    $("#dnsForm").validate({
+    $('#btnaddDomain').prop('disabled', true);
+    $("#domainForm").validate({
         rules: {
-            inputNameRecord: {
+            inputDomain: {
                 required: true,
                 minlength: 5,
             },
-            inputValueRecord: {
+            inpuUsername: {
+                required: true,
+                minlength: 5
+            },
+            inputPassword: {
                 required: true,
                 minlength: 5
             }
-
         },
         messages: {
-            inputNameRecord: {
+            inputDomain: {
                 required: "Vui lòng nhập tên Record",
                 minlength: "Tối thiểu 5 kí tự",
             },
-            inputValueRecord: {
+            inpuUsername: {
+                required: "Vui lòng nhập giá trị Record",
+                minlength: "Tối thiểu 5 kí tự"
+            },
+            inputPassword: {
                 required: "Vui lòng nhập giá trị Record",
                 minlength: "Tối thiểu 5 kí tự"
             }

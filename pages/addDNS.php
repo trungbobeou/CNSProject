@@ -114,8 +114,8 @@ include 'pages/header.php';
                                     ?>
 
                                     <td class="idRecord" name="idReCord" hidden><?= $_value->id ?></td>
-                                    <td class="editbtn">edit</td>
-                                    <td class="deleteDNS">delete</td>
+                                    <td class="editbtn"><a class="fa fa-pencil-square-o"></a></td>
+                                    <td class="deleteDNS"><a class="fa fa-trash"></a></td>
                                 </tr>
                                 <?php
                                 $i++;

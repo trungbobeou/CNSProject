@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function(){
     var valuerecordcheck;
     $("#btnupdateDNS").hide();
     $("#btnaddDNS").show();
@@ -34,37 +34,6 @@ $(document).ready(function () {
                 minlength: "Tối thiểu 5 kí tự",
             },
             inputValueRecord: {
-                required: "Vui lòng nhập giá trị Record",
-                minlength: "Tối thiểu 5 kí tự"
-            }
-        }
-    });
-
-    $("#domainForm").validate({
-        rules: {
-            inputDomain: {
-                required: true,
-                minlength: 5,
-            },
-            inpuUsername: {
-                required: true,
-                minlength: 5
-            },
-            inputPassword: {
-                required: true,
-                minlength: 5
-            }
-        },
-        messages: {
-            inputDomain: {
-                required: "Vui lòng nhập tên Record",
-                minlength: "Tối thiểu 5 kí tự",
-            },
-            inpuUsername: {
-                required: "Vui lòng nhập giá trị Record",
-                minlength: "Tối thiểu 5 kí tự"
-            },
-            inputPassword: {
                 required: "Vui lòng nhập giá trị Record",
                 minlength: "Tối thiểu 5 kí tự"
             }
@@ -145,13 +114,10 @@ $(document).ready(function () {
                 }
             });
         }
-        checkvalidForm();
+        checkvalidFormDNS();
     })
+    
     $("#sltTypeRecord select").text("A").change();
-
-    $("input").on("change", function () {
-        checkvalidForm();
-    })
 
     $(".editbtn").on("click", function () {
         valuerecordcheck = true;
@@ -163,10 +129,10 @@ $(document).ready(function () {
         $("#sltTypeRecord").val(typeSelectText).change();
         $("#inputValueRecord").val($(this).closest('tr').find(".valueRecord").text());
         $("#inputTTL").val($(this).closest('tr').find(".ttlRecord").text());
-        checkvalidForm();
+        checkvalidFormDNS();
     })
 
-    function checkvalidForm() {
+    function checkvalidFormDNS() {
         if ($("#dnsForm").valid() && valuerecordcheck == true) {
             $('#btnaddDNS').prop('disabled', false)
             $('#btnupdateDNS').prop('disabled', false)
@@ -183,4 +149,3 @@ $(document).ready(function () {
         return;
     })
 })
-

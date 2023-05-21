@@ -129,6 +129,6 @@ include 'pages/header.php';
         }
         ?>
     </div>
+    <script src="js/jquerydns.js"></script>
 </body>
-
 </html>

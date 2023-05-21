@@ -264,45 +264,58 @@ function deleteDNS($idrecord)
 
 function addDomain()
 {
-    $nameRecord = $_POST["inputNameRecord"];
-    $typeRecord = $_POST["txtTypeRecord"];
-    $valueRecord = $_POST["inputValueRecord"];
-    $ttl = $_POST["inputTTL"];
+    $nameDomain = $_POST["inputDomain"];
+    $username = $_POST["inputUsername"];
+    $passwrod = $_POST["inputPassword"];
 
     $arraydomain = [
-        "type" => $typeRecord,
-        "host" => $nameRecord . "." . $domainname,
-        "value" => $valueRecord,
-        "opt" => "",
-        "ttl" => ($ttl) ? $ttl : 3600
+        "name" => $nameDomain,
+        "description" => "",
+        "hosting_type" => "virtual",
+        "hosting_settings" => array
+        (
+            "ftp_login" => $username,
+            "ftp_passwrod" => $passwrod
+        ),
+        "ip_addresses" => [
+            "103.42.58.124"
+        ],
+        "ipv4" => [
+            "103.42.58.124"
+        ],
+        "plan" => [
+            "name" => "Unlimited"
+        ]
     ];
 
     $curl = curl_init();
     curl_setopt_array($curl, [
-      CURLOPT_PORT => "8443",
-      CURLOPT_URL => "https://103.42.58.124:8443/api/v2/domains%20",
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => "",
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 30,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => "POST",
-      CURLOPT_POSTFIELDS => "{\r\n  \"name\": \"testdnsaa.com\",\r\n  \"description\": \"My website\",\r\n  \"hosting_type\": \"virtual\",\r\n  \"hosting_settings\": {\r\n    \"ftp_login\": \"test\",\r\n    \"ftp_password\": \"123@123\"\r\n  },\r\n  \"ip_addresses\": [\r\n    \"103.42.58.124\"\r\n  ],\r\n  \"ipv4\": [\r\n    \"103.42.58.124\"\r\n  ],\r\n  \"plan\": {\r\n    \"name\": \"Unlimited\"\r\n  }\r\n}",
-      CURLOPT_HTTPHEADER => [
-        "Accept: */*",
-        "Content-Type: application/json",
-        "User-Agent: Thunder Client (https://www.thunderclient.com)"
-      ],
+        CURLOPT_PORT => "8443",
+        CURLOPT_URL => "https://103.42.58.124:8443/api/v2/domains",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_SSL_VERIFYHOST => 0,
+        CURLOPT_SSL_VERIFYPEER => 0,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => json_encode($arraydomain),
+        CURLOPT_HTTPHEADER => [
+            "Accept: */*",
+            "Authorization: Basic cm9vdDpUaGVnaW9pc29AMTIzKiokJEBAQEA=",
+            "User-Agent: Thunder Client (https://www.thunderclient.com)"
+        ],
     ]);
-    
+
     $response = curl_exec($curl);
     $err = curl_error($curl);
     curl_close($curl);
-    
+
     if ($err) {
-      echo "cURL Error #:" . $err;
+        echo "cURL Error #:" . $err;
     } else {
-      echo $response;
+        header("location: index.php");
     }
 }
 
@@ -318,5 +331,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'deleteRecord') {
     $iddRecord = $_GET['idRecord'];
     deleteDNS($iddRecord);
 }
-
+if (isset($_POST['btnaddDomain'])) {
+    addDomain();
+}
 ?>

@@ -30,12 +30,11 @@
                     </div>
             </div>
             <div class="card-footer">
-                <button type="button" class="btn btn-warning" id="btnaddDomain" name="btnaddDomain">ADD</button>
+                <button type="submit" class="btn btn-warning" id="btnaddDomain" name="btnaddDomain">ADD</button>
             </div>
             </form>
         </div>
     </div>
     <script src="js/jquerydomain.js"></script>
 </body>
-
 </html>

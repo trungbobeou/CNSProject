@@ -10,8 +10,6 @@
     <script src="node_modules/inputmask/dist/inputmask.min.js"></script>
     <script src="node_modules/inputmask/dist/bindings/inputmask.binding.js"></script>
     <script src="js/jquery.validate.min.js"></script>
-    <script src="js/additional-methods.min.js"></script>
-    <script src="js/jquerydns.js"></script>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bulma.min.css">

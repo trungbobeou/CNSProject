@@ -266,7 +266,7 @@ function addDomain()
 {
     $nameDomain = $_POST["inputDomain"];
     $username = $_POST["inputUsername"];
-    $passwrod = $_POST["inputPassword"];
+    $password = $_POST["inputPassword"];
 
     $arraydomain = [
         "name" => $nameDomain,
@@ -275,7 +275,13 @@ function addDomain()
         "hosting_settings" => array
         (
             "ftp_login" => $username,
-            "ftp_passwrod" => $passwrod
+            "ftp_passwrod" => $password
+        ),
+        "owner_client" => array(
+            "id" => 7,
+            "login" => "test",
+            "guid" => "204a4531-4d81-4788-bdf3-3fa90e0b02a7",
+            "external_id" => ""
         ),
         "ip_addresses" => [
             "103.42.58.124"
@@ -319,6 +325,94 @@ function addDomain()
     }
 }
 
+function addClients($username, $password, $email)
+{
+
+    $arrayclients = [
+        "name" => $username,
+        "company" => "",
+        "login" => $username,
+        "status" => "0",
+        "email" => $email,
+        "locale" => "en-US",
+        "owner_login" => "admin",
+        "description" => "",
+        "password" => $password,
+        "type" => "customer"
+    ];
+
+    $curl = curl_init();
+    curl_setopt_array($curl, [
+        CURLOPT_PORT => "8443",
+        CURLOPT_URL => "https://103.42.58.124:8443/api/v2/clients",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_SSL_VERIFYHOST => 0,
+        CURLOPT_SSL_VERIFYPEER => 0,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => json_encode($arrayclients),
+        CURLOPT_HTTPHEADER => [
+            "Accept: */*",
+            "Authorization: Basic cm9vdDpUaGVnaW9pc29AMTIzKiokJEBAQEA=",
+            "Content-Type: application/json",
+            "User-Agent: Thunder Client (https://www.thunderclient.com)"
+        ],
+    ]);
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        echo $response;
+    }
+}
+function checkClients($username)
+{
+    $curl = curl_init();
+
+    curl_setopt_array($curl, [
+        CURLOPT_PORT => "8443",
+        CURLOPT_URL => "https://103.42.58.124:8443/api/v2/clients",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_SSL_VERIFYHOST => 0,
+        CURLOPT_SSL_VERIFYPEER => 0,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => [
+            "Accept: */*",
+            "Authorization: Basic cm9vdDpUaGVnaW9pc29AMTIzKiokJEBAQEA=",
+            "User-Agent: Thunder Client (https://www.thunderclient.com)"
+        ],
+    ]);
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+    $clients = json_decode($response);
+
+    $new = array();
+    foreach ($clients as $value) {
+        $new[] = $value->login;
+    }
+    if (in_array($username, $new)) {
+
+    } else {
+        echo 'add';
+        //addClients();
+    }
+}
+
 $objdnsout = getDNS('testdns.com');
 
 if (isset($_POST['addDNS'])) {
@@ -334,4 +428,5 @@ if (isset($_GET['action']) && $_GET['action'] == 'deleteRecord') {
 if (isset($_POST['btnaddDomain'])) {
     addDomain();
 }
+checkClients('portal.tgs.com.vn');
 ?>

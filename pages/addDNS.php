@@ -7,8 +7,9 @@ include 'pages/header.php';
 
 <body>
     <div class="container">
+    <img src="picture/1516778494_1516762431_logo.png" class="img-fluid mx-auto d-block" alt="...">
         <div class="card mt-2">
-            <h5 class="card-header bg-primary text-white ">
+            <h5 class="card-header bg-primary text-white fw-bold fs-3">
                 ADD DNS
             </h5>
             <div class="card-body">
@@ -53,8 +54,8 @@ include 'pages/header.php';
                     </div>
             </div>
             <div class="card-footer">
-                <button type="submit" name="addDNS" class="btn btn-warning" id="btnaddDNS">ADD</button>
-                <button type="submit" name="updateDNS" class="btn btn-warning" id="btnupdateDNS">UPDATE</button>
+                <button type="submit" name="addDNS" class="btn btn-lg btn-warning" id="btnaddDNS">ADD</button>
+                <button type="submit" name="updateDNS" class="btn btn-lg btn-warning" id="btnupdateDNS">UPDATE</button>
             </div>
             </form>
         </div>

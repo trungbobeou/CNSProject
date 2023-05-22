@@ -3,9 +3,10 @@
 <?php include 'pages/header.php'; ?>
 
 <body>
+    <img src="picture/1516778494_1516762431_logo.png" class="img-fluid mx-auto d-block" alt="...">
     <div class="container">
         <div class="card mt-2">
-            <h5 class="card-header">
+            <h5 class="card-header bg-primary text-white fw-bold fs-3">
                 ADD DOMAIN
             </h5>
             <div class="card-body">
@@ -30,11 +31,12 @@
                     </div>
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-warning" id="btnaddDomain" name="btnaddDomain">ADD</button>
+                <button type="submit" class="btn btn-lg btn-warning" id="btnaddDomain" name="btnaddDomain">ADD</button>
             </div>
             </form>
         </div>
     </div>
     <script src="js/jquerydomain.js"></script>
 </body>
+
 </html>

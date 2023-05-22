@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    var valuerecordcheck;
     $("#inputDomain").inputmask({
         mask: "*{1,}.a{1,}",
         greedy: false,
